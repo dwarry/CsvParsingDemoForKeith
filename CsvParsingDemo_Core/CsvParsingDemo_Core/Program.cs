@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace CsvParsingDemo_Core
 {
@@ -6,7 +7,14 @@ namespace CsvParsingDemo_Core
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (var reader = File.OpenText("fred.csv"))
+            {
+                foreach (var p in Person.ReadAllFrom(reader))
+                {
+                    Console.WriteLine(p);
+                }
+            }
+
         }
     }
 }
